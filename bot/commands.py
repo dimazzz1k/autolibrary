@@ -10,6 +10,11 @@ from db.models import (
     Book
 )
 
+from db.password import (
+    verify_password,
+    get_hashed_password
+)
+
 from bot.utils import (
     ItemGetter,
     ReplyGenerator,
@@ -17,7 +22,7 @@ from bot.utils import (
 )
 
 
-with open('D:/GitHub/.misc/tokens.json', 'r') as f:
+with open('E:/tokens.json', 'r') as f:
     db_token = load(f)["db-token"]
     
 engine = create_engine(db_token)
@@ -81,7 +86,7 @@ async def enter_password(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
     
     student = user_data["student"]
     
-    if student.password != password:
+    if not verify_password(password, student.hashed_password):
         text = "Пароль неверный, попробуйте ещё раз."
         
         await update.message.reply_text(

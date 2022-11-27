@@ -34,7 +34,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-with open('D:/GitHub/.misc/tokens.json', 'r') as f:
+with open('E:/tokens.json', 'r') as f:
     bot_token = load(f)["bot-token"]
 
 

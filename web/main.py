@@ -15,7 +15,7 @@ app.include_router(api_router)
 
 @app.on_event("startup")
 def startup():
-    with open('D:/GitHub/.misc/tokens.json', 'r') as f:
+    with open('E:/tokens.json', 'r') as f:
         db_token = load(f)["db-token"]
     
     engine = create_engine(db_token)
