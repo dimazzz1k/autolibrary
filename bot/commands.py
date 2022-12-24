@@ -27,7 +27,7 @@ with open('E:/tokens.json', 'r') as f:
     
 engine = create_engine(db_token)
 
-START, LOGIN, PASSWORD, SHOP = range(4)
+START, LOGIN, PASSWORD, SHOP, MENU = range(5)
 
 
 async def start(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
@@ -149,8 +149,12 @@ async def show_profile(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 async def show_main_menu(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
-    # основное меню с кнопками после ввода правильного пароля
-    pass
+    await update.message.reply_text(
+        text=update.message.text,
+        reply_markup=ReplyGenerator.menu_markup()
+    )
+
+    return MENU
 
 
 async def quit_profile(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
