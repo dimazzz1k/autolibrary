@@ -58,10 +58,10 @@ def main() -> None:
                 MessageHandler(filters.Regex("^Личный кабинет$"), show_profile)
             ],
             SHOP: [
-                MessageHandler(filters.TEXT & ~(filters.COMMAND | filters.Regex("^Выход$")), show_shop_item),
+                MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu),
                 MessageHandler(filters.Regex("^<$"), show_shop),
                 MessageHandler(filters.Regex("^>$"), show_shop),
-                MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu)  # ,
+                MessageHandler(filters.TEXT & ~(filters.COMMAND | filters.Regex("^Выход$")), show_shop_item)
                 # CallbackQueryHandler()
             ],
             MENU: [
