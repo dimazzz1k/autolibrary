@@ -14,16 +14,20 @@ from telegram.ext import (
 from bot.commands import (
     START,
     LOGIN,
-    PASSWORD,
     SHOP,
     MENU,
+    PROFILE,
+    INVENTORY,
     start,
     enter_login,
     enter_password,
+    change_password,
     show_shop,
     show_shop_item,
     show_basket,
     show_inventory,
+    books_in_process,
+    books_to_give_back,
     show_profile,
     show_main_menu,
     quit_profile
@@ -51,12 +55,6 @@ def main() -> None:
             LOGIN: [
                 MessageHandler(filters.TEXT & ~(filters.COMMAND | filters.Regex("^Выход$")), enter_password)
             ],
-            PASSWORD: [
-                MessageHandler(filters.Regex("^Сделать заказ$"), show_shop),
-                MessageHandler(filters.Regex("^Корзина$"), show_basket),
-                MessageHandler(filters.Regex("^Активные книги$"), show_inventory),
-                MessageHandler(filters.Regex("^Личный кабинет$"), show_profile)
-            ],
             SHOP: [
                 MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu),
                 MessageHandler(filters.Regex("^<$"), show_shop),
@@ -69,6 +67,15 @@ def main() -> None:
                 MessageHandler(filters.Regex("^Корзина$"), show_basket),
                 MessageHandler(filters.Regex("^Активные книги$"), show_inventory),
                 MessageHandler(filters.Regex("^Личный кабинет$"), show_profile)
+            ],
+            PROFILE: [
+                MessageHandler(filters.Regex("^Изменить пароль$"), change_password),
+                MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu)
+            ],
+            INVENTORY: [
+                MessageHandler(filters.Regex("^Книги в обработке$"), books_in_process),
+                MessageHandler(filters.Regex("^Нужно отдать$"), books_to_give_back),
+                MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu)
             ]
         },
         fallbacks=[MessageHandler(filters.Regex("^Выход$"), quit_profile)]
