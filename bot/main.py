@@ -29,8 +29,7 @@ from bot.commands import (
     books_in_process,
     books_to_give_back,
     show_profile,
-    show_main_menu,
-    quit_profile
+    show_main_menu
 )
 
 logging.basicConfig(
@@ -78,7 +77,7 @@ def main() -> None:
                 MessageHandler(filters.Regex("^Обратно в меню$"), show_main_menu)
             ]
         },
-        fallbacks=[MessageHandler(filters.Regex("^Выход$"), quit_profile)]
+        fallbacks=[]
     )
 
     app.add_handler(conversation_handler)

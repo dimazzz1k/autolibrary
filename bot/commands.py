@@ -180,11 +180,3 @@ async def show_main_menu(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
     )
 
     return MENU
-
-
-async def quit_profile(update: Update, ctx: ContextTypes.DEFAULT_TYPE) -> int:
-    # что-то для выхода из бота, скорее всего клавиатура с кнопкой "Войти",
-    # чтобы можно было сразу войти обратно
-    pass
-
-# ! сделать выход по желанию из ввода логина и пароля (добавить клавиатуру с кнопкой "Выход")

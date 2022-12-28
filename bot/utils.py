@@ -177,8 +177,7 @@ class ReplyGenerator:
         keyboard = [
             ["Сделать заказ", "Корзина"],
             ["Активные книги"],
-            ["Личный кабинет"],
-            ["Выход"]
+            ["Личный кабинет"]
         ]
 
         return ReplyKeyboardMarkup(keyboard=keyboard)
